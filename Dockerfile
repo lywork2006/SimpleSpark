@@ -5,7 +5,7 @@
 #
 FROM openjdk:8
 
-MAINTAINER Prashanth Babu <Prashanth.Babu@gmail.com>
+MAINTAINER Y.L.
 
 # Scala related variables.
 ARG SCALA_VERSION=2.12.2
@@ -57,23 +57,15 @@ RUN mkdir -p /data
 # Switch to new directory
 WORKDIR /data
 
-# Clone code
-RUN git clone https://github.com/anilbidari/CloudenabledWebApp.git
 
-# Change to new working directory
-WORKDIR /data/CloudenabledWebApp
 
-# Compile the code
-RUN mvn package
+
 
 # Install tomcat7
 RUN apt-get install -y tomcat8
 
-# Change to target directory
-WORKDIR /data/CloudenabledWebApp/target
 
-# Copy war file to tomcat
-RUN cp /data/CloudenabledWebApp/target/CloudenabledWebApp.war /var/lib/tomcat8/webapps/
+
 
 
 # We will be running our Spark jobs as `root` user.
